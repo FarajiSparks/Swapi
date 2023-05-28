@@ -1,15 +1,11 @@
 import React, {useEffect} from "react";
-import { useDispatch } from "react-redux";
-import { loadPerson } from "./actions/peopleAction";
+import Home from './pages/Home';
 
 function App() {
 
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(loadPerson());
-  })
+ 
   return (
-   <div>Hello</div>
+   <Home/>
   );
 }
 

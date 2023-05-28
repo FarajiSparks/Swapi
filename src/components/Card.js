@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+
+//Styling and Tenative Animation
+import styled from 'styled-components';
+import {motion} from "framer-motion";
 
 const Card = () => {
   return (
     <CardTile>
-    <div className="card-banner">
+        hello
+    {/* <div className="card-banner">
       <img src={image.url} alt={image.alt} className="card-img" />
       <button className="heart" onClick={change}>
         {favourite ? (
@@ -17,7 +22,7 @@ const Card = () => {
       <h3>{name}</h3>
       <p>{phone}</p>
       <p>{email}</p>
-    </div>
+    </div> */}
   </CardTile>
   )
 }
