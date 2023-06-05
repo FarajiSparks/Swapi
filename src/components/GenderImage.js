@@ -3,8 +3,7 @@ import React from 'react';
 // Importing Images
 import female from '../img/Female.svg';
 import male from '../img/Male.svg';
-import user from '../img/User.svg';
-import noFaction from '../img/No Faction.svg';
+import none from '../img/Genderless.png';
 
 const GenderImage = ({ gender }) => {
   let src;
@@ -15,11 +14,8 @@ const GenderImage = ({ gender }) => {
     case 'female':
       src = female;
       break;
-    case 'androgynous':
-      src = user;
-      break;
     default:
-      src = noFaction;
+      src = none;
   }
 
   return <img src={src} alt={gender} />;

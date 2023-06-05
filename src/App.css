@@ -1,3 +1,18 @@
 *{
   font-family: 'Roboto' sans-serif;
 }
+
+body{
+  background-color:  #E5E5E5;
+  padding-left:132px;
+  padding-right:132px;
+
+
+}
+  @media screen and (max-width: 750px) {
+    body{
+       padding-left:32px;
+        padding-right:32px;
+    }
+   
+      }

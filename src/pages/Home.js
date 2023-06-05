@@ -13,12 +13,13 @@ import styled from 'styled-components';
 
 
 
+
 function Home() {
     // Fetching Data
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(loadPerson());
-    }, [dispatch]);
+    }, []);
   
     // Getting Data Back
     const { person, planets} = useSelector((state) => state.people);
@@ -48,12 +49,17 @@ function Home() {
   }
   
   const CardList = styled.div`
-  min-height:80vh;
   display:grid;
-  padding-left:132px;
-  padding-right:132px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  background-color: #E5E5E5;
+  grid-column-gap: 1rem;
+  grid-row-gap: 0.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  @media screen and (min-width:768px)and (max-width: 1023px){
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+  }
+  @media screen and (max-width: 767px){
+    justify-items:center;
+    grid-template-columns: repeat(1, minmax(330px, 1fr));
+  }
   `
   
   export default Home;

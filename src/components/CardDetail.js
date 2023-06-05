@@ -6,71 +6,57 @@ import {motion} from "framer-motion";
 
 //Image Assests 
 import card from '../img/Card.svg';
-import add from '../img/Add.svg';
 import planet from '../img/Planet.svg';
 import vehicle from '../img/Vehicles.svg';
 import starship from "../img/Starships.svg";
 import GenderImage from './GenderImage';
 
-const Card = ({name,species,dob,gender,homeworld,vehicles, starships}) => {
+const CardDetail = ({ name, species, dob, gender, homeworld, vehicles, starships }) => {
   return (
-
-   
     <CardTile>
       <CardBar>
         <CardBarTop>
           <img className="card" src={card} alt="card icon" />
-          <img className="plus" src={add} alt="add icon" />
         </CardBarTop>
-        <CardBarBottom>
-          {name}
-        </CardBarBottom>
+        <CardBarBottom>{name}</CardBarBottom>
       </CardBar>
       <CardContainer>
         <GenderImage gender={gender} />
-          {species}
-          {dob}
-          <Line></Line>
+        {species}
+        {dob}
         <CardStats>
-        <CardStatsTitle>
-          <div className='title-left'> 
-            <img src={planet} alt="" />
-            <div>HOMEWORLD</div>
-          </div>
-          <div>
-            {homeworld}
-          </div>
-        </CardStatsTitle>
-        <CardStatsTitle>
-          <div className='title-left'> 
-            <img src={vehicle} alt="" />
-            <div>VEHICLES</div>
-          </div>
-          <div>
-            {vehicles}
-          </div>
-        </CardStatsTitle>
-        <CardStatsTitle>
-          <div className='title-left'> 
-            <img src={starship} alt="" />
-            <div>STARSHIPS</div>
-          </div>
-          <div>
-            {starships.length}
-          </div>
-        </CardStatsTitle>
-          <div>
-            {homeworld}
-          </div>
+          <CardStatsTitle>
+            <div className="title-left">
+              <img src={planet} alt="" />
+              <div>HOMEWORLD</div>
+            </div>
+            <div>{homeworld}</div>
+          </CardStatsTitle>
+
+          {vehicles.map((vehicleUrl) => (
+            <CardStatsTitle key={vehicleUrl}>
+              <div className="title-left">
+                <img src={vehicle} alt="" />
+                <div>VEHICLE</div>
+              </div>
+              <div>{vehicleUrl}</div>
+            </CardStatsTitle>
+          ))}
+
+          {starships.map((starshipUrl) => (
+            <CardStatsTitle key={starshipUrl}>
+              <div className="title-left">
+                <img src={starship} alt="" />
+                <div>STARSHIP</div>
+              </div>
+              <div>{starshipUrl}</div>
+            </CardStatsTitle>
+          ))}
         </CardStats>
       </CardContainer>
-        
-  </CardTile>
- 
- 
-  )
-}
-
+    </CardTile>
+  );
+};
 
 
 const CardTile = styled(motion.article)`
@@ -95,19 +81,13 @@ padding:15px 15px 4px 14px;
 `
 const CardBarTop = styled(motion.div)`
 display:flex;
-justify-content:space-between;
+justify-content:left;
   img{
         display:inline ;
         height:1rem;
         width: 1rem;
        
     }
-    .plus{
-          background-color:white;
-          padding:10px 11px;
-          border-radius:5px;
-          cursor:pointer;
-        } 
 `
 const CardBarBottom = styled(motion.div)`
 
@@ -117,13 +97,6 @@ height:50px;
   align-items:flex-end;
   color:white;
   font-size:24px;
-`
-const Line = styled(motion.div)`
-  height:1.5px;
-  width:auto;
-  background-color:#B8B8B8;
-  margin-bottom:13px;
-
 `
 
 const CardContainer = styled(motion.div)`
@@ -159,4 +132,4 @@ padding-right:8px;
     }
 };`
 
-export default Card;
+export default CardDetail;
