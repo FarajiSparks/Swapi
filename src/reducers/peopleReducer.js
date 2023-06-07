@@ -16,7 +16,7 @@ const peopleReducer = (state=initState, action) =>{
         case "FETCH_SEARCHED":
             return{
                 ...state,
-                searched:action.payload.searched
+                people:action.payload.searched
             };
         case "FETCH_YOUNG":
             return{
