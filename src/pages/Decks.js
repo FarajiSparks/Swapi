@@ -1,35 +1,69 @@
-
-import React, {useEffect} from "react";
-
-//Redux
+import React, {useState} from "react";
+import  {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDeck } from "../actions/deckeAction";
-
-//Components
+import { addDeck, loadDeck } from "../actions/deckAction";
 import Deck from "../components/Deck";
-
-//Styling and Tenative Animation
 import styled from 'styled-components';
 
+
 const Decks = () => {
-// Fetching Data 
-const dispatch = useDispatch();
-useEffect(()=>{
-  dispatch(createDeck())
-}, [addDeck]);
+  const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(loadDeck());
+    }, [dispatch]);
+ const [name, setName] = useState('');
 
-//Getting Data Back
-const {deck} = useSelector((state)=> state.decks);
+ const [faction, setFaction] = useState('jediOrder');
 
-  return (
-    <div>
-      {deck.map(()=>{
-        return(
-          <Deck/>
-        )
-      })}
-    </div>
-  )
+ const  {decks}  = useSelector((state) => state);
+
+ const handleAddDeck = () => {
+  if (!name || !faction) {
+  alert('Name and faction are required');
+  return;
+  }
+  dispatch(addDeck(name, faction));
+  setName('');
+  setFaction('jediOrder');
+ };
+ 
+
+ return (
+ <div>
+  <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      placeholder="Enter deck name"
+      
+  />
+  <select value={faction} onChange={(e) => setFaction(e.target.value)}>
+      <option value="jediOrder">Jedi Order</option>
+      <option value="rebelAlliance">Rebel Alliance</option>
+      <option value="galacticEmpire">Galactic Empire</option>
+      <option value="noFaction">No Faction</option>
+  </select>
+  <button onClick={handleAddDeck}>Add Deck</button>
+  <DeckList> 
+    {decks.decks?.map(deck => {
+      return <Deck name={deck.name} faction={deck.faction} id={deck.id} />;
+    })}
+  </DeckList>
+  {(decks===[]) && <div>hello?</div>}
+ </div>
+ );
+};
+
+const DeckList = styled.div`
+display:flex;
+grid-column-gap: 1rem;
+flex-wrap:wrap;
+
+@media screen and (max-width: 767px){
+  display:grid;
+  justify-items:center;
+  grid-template-columns: repeat(1, minmax(330px, 1fr));
 }
+`
 
-export default Decks
+export default Decks;

@@ -5,7 +5,7 @@ import {motion} from "framer-motion";
 
 //Redux and Routes
 import {useDispatch} from 'react-redux';
-import { fetchSearched} from '../actions/peopleAction';
+import { searchDeck } from '../actions/deckAction';
 
 //Assests
 import search from "../img/Search.svg";
@@ -17,8 +17,9 @@ const CardSearch = () => {
 
   const submitSearch = (e) =>{
     e.preventDefault(); 
-    dispatch (fetchSearched(textInput));
+    dispatch (searchDeck(textInput));
     setTextInput("");
+    console.log(searchDeck(textInput));
   }
 
   const inputHandler = (e) =>{
@@ -30,7 +31,7 @@ const CardSearch = () => {
   <Container>
       <Formy className="search">
             <input id="search-bar" value={textInput} placeholder="Search" onChange={inputHandler} type="text"/>
-            <button href="#" onSubmit={()=>submitSearch()} type='submit'><img className='search-icon' src={search} alt="" /></button>
+            <button href="#" onClick={()=>submitSearch()} type='submit'><img className='search-icon' src={search} alt="" /></button>
       </Formy>
       <Filters>
         <button>+</button>
@@ -39,7 +40,7 @@ const CardSearch = () => {
   )
 }
 
-const Container = styled(motion.form)`
+const Container = styled(motion.div)`
 display:flex;
 justify-content:start;
 margin-top:30px;
@@ -78,6 +79,7 @@ button{
   height: 75px;
   top: -56px;
   right: -378px;
+  cursor:pointer;
 }
 `
 const Filters = styled(motion.div)`

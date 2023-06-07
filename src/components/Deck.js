@@ -4,54 +4,65 @@ import React from 'react';
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
+import { useDispatch } from "react-redux";
+
 //Image Assests 
 import deck from '../img/Deck.svg';
 import remove from '../img/Remove.svg';
-import jediOrder from '../img/Jedi Order Watermark.svg';
-import rebelAlliance from '../img/Rebel Alliance Watermark.svg';
-import galacticEmpire from '../img/Galatic Empire Watermark.svg';
-import noFaction from '../img/No Faction Watermark.svg';
+import jediOrder from '../img/Jedi Order.svg';
+import rebelAlliance from '../img/Rebel Alliance.svg';
+import galacticEmpire from '../img/Galatic Empire.svg';
+import noFaction from '../img/No Faction.svg';
+import { deleteDeck } from '../actions/deckAction';
 
 
 
-const Deck = ({name, totalCards, faction}) => {
-  const FactionImage = ( faction ="jedi") => {
+const Deck = ({name, totalCards, faction, id}) => {
+
+  const dispatch = useDispatch();
+  const handleDeleteDeck = () =>{
+    dispatch(deleteDeck(id))
+  }
+
+  const FactionImage = () => {
     let src;
     let color;
     switch (faction) {
-      case 'jedi':
-        src = jediOrder;
-        color = "#C53030";
-        break;
-      case 'rebel':
-        src = rebelAlliance;
-        color = "#2F855A";
-        break;
-      case 'galactic':
-        src = galacticEmpire;
-        color="#3B3B3B"
-        break;
-      case 'no faction':
-        src = noFaction;
-        color = "#969696"
-        break;
-      default:
-        src = noFaction;
+    case 'jedi':
+    src = jediOrder;
+    color = "#C53030";
+    break;
+    case 'rebel':
+    src = rebelAlliance;
+    color = "#2F855A";
+    break;
+    case 'galactic':
+    src = galacticEmpire;
+    color="#3B3B3B"
+    break;
+    case 'no faction':
+    src = noFaction;
+    color = "#969696"
+    break;
+    default:
+    src = galacticEmpire;
+    color = "#2F855A";
     }
-    return  {src, color};
-  
-  }
+    return {src, color};
+   }
 
-  const {color} = FactionImage(faction)
+   const {src, color} = FactionImage();
+
 
   return (
 
    
     <DeckTile>
-      <DeckBar backgroundColor = "blue" >
+
+      <DeckBar backgroundcolor={color} backgroundimage={src} >
           <DeckBarTop>
             <img className="card" src={deck} alt="card icon" />
-            <img className="remove" src={remove} alt="add icon" />
+            <button onClick={()=>handleDeleteDeck(id)}><img className="remove" src={remove} alt="add icon" /></button>
           </DeckBarTop>
           <DeckBarBottom>
             {name}
@@ -60,7 +71,7 @@ const Deck = ({name, totalCards, faction}) => {
       <DeckContainer>         
         <DeckStats>
           <div className='total'>10</div>
-          <div>total card</div>
+          <div>{totalCards}</div>
         </DeckStats>
       </DeckContainer>
     </DeckTile>
@@ -87,7 +98,11 @@ const DeckTile = styled(motion.article)`
 const DeckBar = styled(motion.div)`
 height:98px;
 padding:15px 15px 4px 14px;
-background-color:red;
+background-color:${props => props.backgroundcolor};
+background-image: url(${props => props.backgroundimage});
+background-size: 'cover',
+background-position: 'right',
+background-repeat: 'no-repeat',
 `
 const DeckBarTop = styled(motion.div)`
 display:flex;
@@ -106,6 +121,13 @@ justify-content:space-between;
           cursor:pointer;
          ;
         } 
+    button{
+      background-color: transparent;
+      border:none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
 `
 const DeckBarBottom = styled(motion.div)`
 
