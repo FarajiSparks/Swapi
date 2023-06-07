@@ -15,8 +15,8 @@ const CardSearch = () => {
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState("");
 
-  const submitSearch = (e) =>{
-    e.preventDefault(); 
+  const submitSearch = () =>{
+   
     dispatch (fetchSearched(textInput));
     setTextInput("");
   }
@@ -38,8 +38,8 @@ const CardSearch = () => {
   return (
   <Container>
       <Formy className="search">
-            <input id="search-bar" value={textInput} placeholder="Search" onChange={inputHandler} type="text"/>
-            <button href="#" onSubmit={()=>submitSearch()} type='submit'><img className='search-icon' src={search} alt="" /></button>
+            <input id="search-bar" value={textInput} placeholder="Search" onChange={inputHandler}  type="text"/>
+            <button onClick={(e)=>submitSearch(e)} type='button'><img className='search-icon' src={search} alt="" /></button>
       </Formy>
       <Filters>
         <button >A to Z</button>
@@ -89,6 +89,7 @@ button{
   height: 75px;
   top: -56px;
   right: -378px;
+  cursor:pointer;
 }
 `
 const Filters = styled(motion.div)`

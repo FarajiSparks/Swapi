@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 //Styling and Tenative Animation
 import styled from 'styled-components';
 import {motion} from "framer-motion";
+
+import { useDispatch } from 'react-redux';
+import { loadDetail } from '../actions/detailAction';
 
 //Image Assests 
 import card from '../img/Card.svg';
@@ -11,25 +14,40 @@ import planet from '../img/Planet.svg';
 import vehicle from '../img/Vehicles.svg';
 import starship from "../img/Starships.svg";
 import GenderImage from './GenderImage';
+import SelectDeck from './SelectDeck';
 
-const Card = ({name,species,dob,gender,homeworld,vehicles, starships}) => {
+
+
+const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => { 
+    const [toggler, setToggler] = useState(false)
+    const toggle = ()=>{
+      setToggler((prev)=>!prev);
+      console.log("working?")
+    }
+
+    const dispatch = useDispatch();
+    const loadDetailHandler = ()=>{
+      dispatch(loadDetail(url ))
+      console.log(species);
+    }
+
+
   return (
-
-   
-    <CardTile>
+    <CardTile onClick={loadDetailHandler}>
       <CardBar>
         <CardBarTop>
           <img className="card" src={card} alt="card icon" />
-          <img className="plus" src={add} alt="add icon" />
+          <button onClick={()=>toggle()}><img className="plus" src={add} alt="add icon" /></button>
+          {toggler && <SelectDeck/>}
         </CardBarTop>
         <CardBarBottom>
           {name}
         </CardBarBottom>
       </CardBar>
       <CardContainer>
-        <GenderImage gender={gender} />
-          {species}
-          {dob}
+          <GenderImage gender={gender} />
+          {(species === []) ? <div>Human</div> : species}
+          {(dob === "unknown") ? <div>Unknown</div> : dob}
           <Line></Line>
         <CardStats>
         <CardStatsTitle>
@@ -82,6 +100,8 @@ const CardTile = styled(motion.article)`
   background-color:white;
   font-family: 'Roboto' sans-serif;
   margin-bottom:25px;
+  position:relative;
+ 
   @media screen and (max-width: 767px){
     width:100%;
   }
@@ -107,7 +127,14 @@ justify-content:space-between;
           padding:10px 11px;
           border-radius:5px;
           cursor:pointer;
-        } 
+        }
+    button{
+      background-color: transparent;
+        border:none;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+        appearance: none;
+    } 
 `
 const CardBarBottom = styled(motion.div)`
 

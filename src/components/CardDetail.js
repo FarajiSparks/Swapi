@@ -1,55 +1,71 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //Styling and Tenative Animation
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
+//Redux
+import { useSelector } from 'react-redux';
+
 //Image Assests 
 import card from '../img/Card.svg';
 import planet from '../img/Planet.svg';
-import vehicle from '../img/Vehicles.svg';
-import starship from "../img/Starships.svg";
+import vehicleImg from '../img/Vehicles.svg';
+import starshipImg from "../img/Starships.svg";
 import GenderImage from './GenderImage';
 
-const CardDetail = ({ name, species, dob, gender, homeworld, vehicles, starships }) => {
+const CardDetail = ({  dob, gender }) => {
+
+  const {detail, homeworld, starship, species, vehicles} = useSelector(state=>state.detail)
+  useEffect(()=>{
+    console.log(vehicles);
+   
+
+  },[])
+ 
   return (
     <CardTile>
       <CardBar>
         <CardBarTop>
           <img className="card" src={card} alt="card icon" />
         </CardBarTop>
-        <CardBarBottom>{name}</CardBarBottom>
+        <CardBarBottom>{detail?.name}</CardBarBottom>
       </CardBar>
       <CardContainer>
-        <GenderImage gender={gender} />
-        {species}
-        {dob}
+        <div className='titles'>
+          <div>
+            <GenderImage gender={detail.gender} />
+            {(detail?.birth_year ? detail?.birth_year : <div>Unknown</div>)}
+          </div>
+          {((species === []) ? <div>Human</div>: species?.name)}
+        </div>
+        <Line/>
         <CardStats>
           <CardStatsTitle>
             <div className="title-left">
-              <img src={planet} alt="" />
+              <img src={planet} alt="planet icon" />
               <div>HOMEWORLD</div>
             </div>
-            <div>{homeworld}</div>
+            <div>{homeworld?.name}</div>
           </CardStatsTitle>
 
-          {vehicles.map((vehicleUrl) => (
-            <CardStatsTitle key={vehicleUrl}>
+          {vehicles?.map((vehicle) => (
+            <CardStatsTitle key={vehicle.name}>
               <div className="title-left">
-                <img src={vehicle} alt="" />
+                <img src={vehicleImg} alt="vehicle icon" />
                 <div>VEHICLE</div>
               </div>
-              <div>{vehicleUrl}</div>
+              {((vehicle === 0)?<div>0</div> : <div>{vehicle?.name}</div>)}
             </CardStatsTitle>
           ))}
 
-          {starships.map((starshipUrl) => (
-            <CardStatsTitle key={starshipUrl}>
+          {starship?.map((ship) => (
+            <CardStatsTitle key={starship.name}>
               <div className="title-left">
-                <img src={starship} alt="" />
+                <img src={starshipImg} alt="" />
                 <div>STARSHIP</div>
               </div>
-              <div>{starshipUrl}</div>
+              {((ship === 0)?<div>0</div> : <div>{ship?.name}</div>)}
             </CardStatsTitle>
           ))}
         </CardStats>
@@ -62,14 +78,14 @@ const CardDetail = ({ name, species, dob, gender, homeworld, vehicles, starships
 const CardTile = styled(motion.article)`
  
   min-height:282px;
-  width:auto;
+  width:800px;
   border-radius:8px;
   overflow: hidden;
   background-color:white;
   font-family: 'Roboto' sans-serif;
   margin-bottom:25px;
   @media screen and (max-width: 767px){
-    width:100%;
+    width:800px;
   }
        
       `
@@ -89,6 +105,15 @@ justify-content:left;
        
     }
 `
+const Line = styled(motion.div)`
+  height:1.5px;
+  width:auto;
+  background-color:#B8B8B8;
+  margin-bottom:13px;
+  margin-top:8px;
+
+`
+
 const CardBarBottom = styled(motion.div)`
 
 height:50px;
@@ -103,6 +128,14 @@ const CardContainer = styled(motion.div)`
 
  margin-left:20px;
  margin-right:20px;
+ .titles{
+  display:flex;
+  justify-content:space-between;
+  padding-top:8px;
+ }
+  div{
+  display:flex;
+ }
 `
 const CardStats = styled(motion.div)`
 display:flex;
@@ -121,6 +154,9 @@ width:100%;
 border-radius:5px;
 padding-left:8px;
 padding-right:8px;
+   :last-child{
+      margin-bottom:150px;
+    }
   .title-left{
     display:flex;
     align-items:center;
@@ -130,6 +166,7 @@ padding-right:8px;
     div{
       padding-left:3px;
     }
+ 
 };`
 
 export default CardDetail;

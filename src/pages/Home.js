@@ -19,7 +19,10 @@ function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(loadPerson());
-    }, []);
+  
+    }, [dispatch]);
+    
+    
   
     // Getting Data Back
     const { person, planets} = useSelector((state) => state.people);
@@ -35,6 +38,7 @@ function Home() {
               <Card
                 key={person.name}
                 name={person.name}
+                url={person.url}
                 species={person.species}
                 starships={person.starships}
                 gender={person.gender}
