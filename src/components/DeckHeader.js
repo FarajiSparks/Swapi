@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+//Styling and Tenative Animation
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
@@ -8,18 +8,23 @@ import {motion} from "framer-motion";
 import bavin from "../img/User (2).svg";
 import cards from "../img/Cards.svg";
 import decksSelected from "../img/Decks Selected.svg";
+
+//Routing
 import {useLocation} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
 const DeckHeader = () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
+    const location = useLocation();
+    console.log(location);
+
+    //Home Navigation For Routing
     const homeHandler = () =>{
         navigate("/");
     }
-    const location = useLocation();
-    console.log(location)
+   
   return (
     <>
     <Top>

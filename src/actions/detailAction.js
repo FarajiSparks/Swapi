@@ -1,6 +1,9 @@
+//Details Action
+
 import axios from 'axios';
 
  export const loadDetail = (url) => async (dispatch)=>{
+    //Fetching Various Api Sections Through Urls from Detail Data
     const detailData = await axios.get(url);
     const starShipData = detailData.data.starships
     const homeworldData = await axios.get(detailData.data.homeworld)

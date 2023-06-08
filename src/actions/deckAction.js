@@ -1,5 +1,4 @@
 //Deck Actions
-
 export const addDeck = (name, faction) => ({
     type: 'ADD_DECK',
     payload: { name, faction }

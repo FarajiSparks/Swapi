@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 
+//Styling and Tenative Animation
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
-//Redux and Routes
+//Redux 
 import {useDispatch} from 'react-redux';
-import { fetchSearched, loadOldest, loadYoungest } from '../actions/peopleAction';
+import { fetchSearched, loadOldest, loadYoungest, loadAZ } from '../actions/peopleAction';
 
 //Assests
 import search from "../img/Search.svg";
 
+//Routes
 import {useLocation} from 'react-router-dom';
 
 const CardSearch = () => {
 
   const location = useLocation();
-  console.log(location)
-
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState("");
 
-  const submitSearch = () =>{
-   
+
+  //Search Function
+  const submitSearch = () =>{ 
     dispatch (fetchSearched(textInput));
     setTextInput("");
   }
@@ -30,15 +31,24 @@ const CardSearch = () => {
     setTextInput(e.target.value)
   }
   
+  //Alphabetic Sort 
+  const filterAZ = () =>{  
+    dispatch(loadAZ())
+    console.log("working old");
+  }
+
+  //Young to Old Sort
   const filterYoung = () =>{
     dispatch(loadYoungest())
     console.log("working");
   }
 
+  //Old to Young Sort
   const filterOld = () =>{  
     dispatch(loadOldest())
     console.log("working old");
   }
+
 
   return (
   <Container>
@@ -47,7 +57,7 @@ const CardSearch = () => {
             <button onClick={(e)=>submitSearch(e)} type='button'><img className='search-icon' src={search} alt="" /></button>
       </Formy>
       <Filters>
-        <button >A to Z</button>
+        <button onClick={()=>filterAZ()}>A to Z</button>
         <button onClick={()=>filterYoung()}>Youngest</button>
         <button onClick={()=>filterOld()}>Oldest</button>
       </Filters>

@@ -4,7 +4,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
+//Redux
 import { useDispatch } from "react-redux";
+import { deleteDeck } from '../actions/deckAction';
 
 //Image Assests 
 import deck from '../img/Deck.svg';
@@ -13,13 +15,13 @@ import jediOrder from '../img/Jedi Order.svg';
 import rebelAlliance from '../img/Rebel Alliance.svg';
 import galacticEmpire from '../img/Galatic Empire.svg';
 import noFaction from '../img/No Faction.svg';
-import { deleteDeck } from '../actions/deckAction';
-
 
 
 const Deck = ({name, totalCards, faction, id}) => {
 
   const dispatch = useDispatch();
+
+  //Deleting Deck Functionality
   const handleDeleteDeck = () =>{
     dispatch(deleteDeck(id))
   }
@@ -58,7 +60,6 @@ const Deck = ({name, totalCards, faction, id}) => {
 
    
     <DeckTile>
-
       <DeckBar backgroundcolor={color} backgroundimage={src} >
           <DeckBarTop>
             <img className="card" src={deck} alt="card icon" />
@@ -100,10 +101,11 @@ height:98px;
 padding:15px 15px 4px 14px;
 background-color:${props => props.backgroundcolor};
 background-image: url(${props => props.backgroundimage});
-background-size: 'cover',
-background-position: 'right',
-background-repeat: 'no-repeat',
+background-size: cover;
+background-position: right;
+background-repeat: no-repeat;
 `
+
 const DeckBarTop = styled(motion.div)`
 display:flex;
 justify-content:space-between;

@@ -26,6 +26,10 @@ const peopleReducer = (state=initState, action) =>{
             return{
                 ...state, person: action.payload.people
                 }
+        case "FETCH_AZ":
+            return{
+                ...state, person: action.payload.people
+                  }
         default:
             return{...state} 
     }

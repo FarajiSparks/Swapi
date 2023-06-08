@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { people, planets, vehicles, searchedPersonURL } from '../api';
+import {people, planets, vehicles, searchedPersonURL} from '../api';
 
+
+//Factory Function to Fetch All Pages From Api
 async function fetchAll(url) {
   let nextUrl = url;
   let allData = [];
@@ -14,7 +16,7 @@ async function fetchAll(url) {
 };
 
 
-
+//Initial Load Action For All Cards
 export const loadPerson = () => async (dispatch) => {
   // Fetch all data
   const [allPersonData, allPlanetData, allVehicleData] = await Promise.all([
@@ -22,7 +24,6 @@ export const loadPerson = () => async (dispatch) => {
     fetchAll(planets()),
     fetchAll(vehicles()),
   ]);
-
 
   dispatch({
     type: 'FETCH_INFO',
@@ -34,31 +35,55 @@ export const loadPerson = () => async (dispatch) => {
   });
 };
 
-export const loadOldest = () => async (dispatch) => {
+//Load All Cards Alphabetically Action 
+export const loadAZ = () => async (dispatch) =>{
   // Fetch all data
   const [allPersonData] = await Promise.all(
-    [fetchAll(people())]
-    
-  );
-
-    // Sort people data by birth year
-    const sortedPersonData = allPersonData.sort((a, b) => {
-      const aYear = a.birth_year === 'unknown' ? -1 : parseInt(a.birth_year);
-      const bYear = b.birth_year === 'unknown' ? -1 : parseInt(b.birth_year);
-      if (aYear > bYear) return -1;
-      if (aYear < bYear) return 1;
+      [fetchAll(people())]
+    );
+  
+   // Sort People Data Alphabetically A-Z
+  const sortedPersonData = allPersonData.sort((a,b)=>{
+    const aName = a.name;
+    const bName = b.name;
+    if (bName >aName ) return -1;
+      if ( bName< aName) return 1;
       return 0;
-    });
+  });
 
   dispatch({
-    type: 'FETCH_YOUNG',
+    type: 'FETCH_AZ',
     payload: {
-      people: sortedPersonData,
-      
+    people: sortedPersonData,  
     },
   });
 };
 
+//Load All Cards From Oldest to Youngest
+export const loadOldest = () => async (dispatch) => {
+  // Fetch All Data
+  const [allPersonData] = await Promise.all(
+    [fetchAll(people())]    
+  );
+
+  // Sort People Data By Birth Year Oldest
+  const sortedPersonData = allPersonData.sort((a, b) => {
+      const aYear = a.birth_year === 'unknown' ? -1 : parseInt(a.birth_year);
+      const bYear = b.birth_year === 'unknown' ? -1 : parseInt(b.birth_year);
+      if (aYear > bYear) return -1;
+      if (aYear < bYear) return 1;
+        return 0;
+    });
+
+  dispatch({
+    type: 'FETCH_OLD',
+    payload: {
+      people: sortedPersonData,
+    },
+  });
+};
+
+//Load All Cards From Youngest to Oldest
 export const loadYoungest = () => async (dispatch) => {
   // Fetch all data
   const [allPersonData, allPlanetData, allVehicleData] = await Promise.all([
@@ -67,7 +92,7 @@ export const loadYoungest = () => async (dispatch) => {
     fetchAll(vehicles()),
   ]);
 
-  // Sort people data by birth year
+  // Sort People Data By Birth Year Youngest
   const sortedPersonData = allPersonData.sort((a, b) => {
     const aYear = a.birth_year === 'unknown' ? -1 : parseInt(a.birth_year);
     const bYear = b.birth_year === 'unknown' ? -1 : parseInt(b.birth_year);
@@ -77,7 +102,7 @@ export const loadYoungest = () => async (dispatch) => {
   });
 
   dispatch({
-    type: 'FETCH_OLD',
+    type: 'FETCH_YOUNG',
     payload: {
       people: sortedPersonData,
       planets: allPlanetData,

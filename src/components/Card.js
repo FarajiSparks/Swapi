@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {motion} from "framer-motion";
 
+//Redux
 import { useDispatch } from 'react-redux';
 import { loadDetail } from '../actions/detailAction';
 
@@ -16,19 +17,21 @@ import starship from "../img/Starships.svg";
 import GenderImage from './GenderImage';
 import SelectDeck from './SelectDeck';
 
+//Routing
 import { useNavigate } from "react-router-dom";
 
 
 const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => { 
+    //Toggler For Deck Component
     const [toggler, setToggler] = useState(false)
     const toggle = () => {
       setToggler(prev => !prev);
     }
 
     const navigate = useNavigate();
-   
-
     const dispatch = useDispatch();
+
+    //Card Detail Navigation and Data Fetching
     const loadDetailHandler = ()=>{
       dispatch(loadDetail(url ))
       navigate(`/${name}`);
@@ -36,10 +39,10 @@ const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => {
 
 
   return (
-    <CardTile onClick={loadDetailHandler}>
+    <CardTile>
       <CardBar>
         <CardBarTop>
-          <img className="card" src={card} alt="card icon" />
+          <button onClick={loadDetailHandler}><img className="card" src={card} alt="card icon" /></button>
           <button onClick={()=>toggle()}><img className="plus" src={add} alt="add icon" /></button>
           {toggler && <SelectDeck/>}
         </CardBarTop>
@@ -93,7 +96,6 @@ const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => {
 }
 
 
-
 const CardTile = styled(motion.article)`
  
   min-height:282px;
@@ -129,9 +131,10 @@ justify-content:space-between;
           background-color:white;
           padding:10px 11px;
           border-radius:5px;
-          cursor:pointer;
+         
         }
-    button{
+    button{ 
+      cursor:pointer;
       background-color: transparent;
         border:none;
        -webkit-appearance: none;

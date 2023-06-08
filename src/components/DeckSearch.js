@@ -10,11 +10,12 @@ import { searchDeck } from '../actions/deckAction';
 //Assests
 import search from "../img/Search.svg";
 
-const CardSearch = () => {
 
+const CardSearch = () => {
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState("");
 
+  //Search Function
   const submitSearch = (e) =>{
     e.preventDefault(); 
     dispatch (searchDeck(textInput));
