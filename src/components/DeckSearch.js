@@ -20,7 +20,7 @@ const CardSearch = () => {
     e.preventDefault(); 
     dispatch (searchDeck(textInput));
     setTextInput("");
-    console.log(searchDeck(textInput));
+  
   }
 
   const inputHandler = (e) =>{

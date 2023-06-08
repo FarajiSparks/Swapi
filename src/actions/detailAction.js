@@ -11,8 +11,6 @@ import axios from 'axios';
     const speciesData = await axios.get(speciesUrl.data.url)
     const vehicleData =detailData.data.vehicles
     
-    console.log(speciesData);
-    console.log("hello");
     dispatch({
         type: "GET_DETAIL",
         payload: {

@@ -34,19 +34,19 @@ const CardSearch = () => {
   //Alphabetic Sort 
   const filterAZ = () =>{  
     dispatch(loadAZ())
-    console.log("working old");
+   
   }
 
   //Young to Old Sort
   const filterYoung = () =>{
     dispatch(loadYoungest())
-    console.log("working");
+   
   }
 
   //Old to Young Sort
   const filterOld = () =>{  
     dispatch(loadOldest())
-    console.log("working old");
+    
   }
 
 

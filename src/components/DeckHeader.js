@@ -18,7 +18,7 @@ const DeckHeader = () => {
 
     const navigate = useNavigate(); 
     const location = useLocation();
-    console.log(location);
+   
 
     //Home Navigation For Routing
     const homeHandler = () =>{
@@ -56,6 +56,15 @@ const Top = styled(motion.div)`
     }
     img{
         height:30px;
+    }
+    button{
+        cursor:pointer;
+        background-color: transparent;
+       
+        border:none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
     @media screen and (max-width: 1023px){
     .title{

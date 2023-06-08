@@ -10,14 +10,13 @@ import Card from "../components/Card";
 //Styling and Tenative Animation
 import styled from 'styled-components';
 
-import {useLocation} from 'react-router-dom'
 
 
 
 function Home() {
 
-    const location = useLocation();
-    console.log(location);
+  
+ 
 
     // Fetching Data
     const dispatch = useDispatch();

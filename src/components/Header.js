@@ -11,13 +11,10 @@ import cardsSelected from "../img/Cards Selected.svg";
 
 
 import { useNavigate } from "react-router-dom";
-import {useLocation} from 'react-router-dom';
 
 
 const Header = () => {
 
-    const location = useLocation();
-    console.log(location);
 
     const navigate = useNavigate();
 
@@ -28,8 +25,8 @@ const Header = () => {
     <>
     <Top>
         <div>
-            <img src={cardsSelected} alt="" />
-            <button onClick={()=>decksHandler()}><img src={decks} alt="" /></button>
+            <img src={cardsSelected} alt="all cards" />
+            <button onClick={()=>decksHandler()}><img src={decks} alt="decks" /></button>
         </div>
         <div className="title"><span>SW</span>-API Deck Builder</div>
         <img src={bavin} alt="" />
@@ -55,6 +52,14 @@ const Top = styled(motion.div)`
     }
     img{
         height:30px;
+    }
+    button{
+        cursor:pointer;
+        background-color: transparent;
+        border:none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
     @media screen and (max-width: 1023px){
     .title{

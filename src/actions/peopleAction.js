@@ -113,7 +113,6 @@ export const loadYoungest = () => async (dispatch) => {
 
 export const  fetchSearched = (person_name) => async(dispatch) =>{
     const searchedPerson = await axios.get(searchedPersonURL()+person_name);
-    console.log(searchedPerson.data.results);
     dispatch({
         type: "FETCH_SEARCHED", 
         payload: {

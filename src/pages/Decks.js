@@ -5,18 +5,14 @@ import { addDeck, loadDeck } from "../actions/deckAction";
 import Deck from "../components/Deck";
 import styled from 'styled-components';
 
-import {useLocation} from 'react-router-dom';
 
 const Decks = () => {
-  const location = useLocation();
-  console.log(location.pathname);
 
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
     useEffect(() => {
       dispatch(loadDeck());
     }, [dispatch]);
  const [name, setName] = useState('');
-
  const [faction, setFaction] = useState('jediOrder');
 
  const  {decks}  = useSelector((state) => state);
