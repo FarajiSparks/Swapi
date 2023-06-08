@@ -6,30 +6,26 @@ import {motion} from "framer-motion";
 
 //Assests
 import bavin from "../img/User (2).svg";
-import decks from "../img/Decks.svg";
-import cardsSelected from "../img/Cards Selected.svg";
-
-
-import { useNavigate } from "react-router-dom";
+import cards from "../img/Cards.svg";
+import decksSelected from "../img/Decks Selected.svg";
 import {useLocation} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
-const Header = () => {
-
-    const location = useLocation();
-    console.log(location);
+const DeckHeader = () => {
 
     const navigate = useNavigate();
-
-    const decksHandler = () =>{
-        navigate("/decks");
+    const homeHandler = () =>{
+        navigate("/");
     }
+    const location = useLocation();
+    console.log(location)
   return (
     <>
     <Top>
         <div>
-            <img src={cardsSelected} alt="" />
-            <button onClick={()=>decksHandler()}><img src={decks} alt="" /></button>
+            <button  onClick={()=>homeHandler()}><img src={cards} alt="" /></button>
+            <img src={decksSelected} alt="" />
         </div>
         <div className="title"><span>SW</span>-API Deck Builder</div>
         <img src={bavin} alt="" />
@@ -69,4 +65,4 @@ height:1px;
 width:auto;
 background-color:#B8B8B8;`
 
-export default Header;
+export default DeckHeader;

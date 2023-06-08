@@ -10,7 +10,12 @@ import { fetchSearched, loadOldest, loadYoungest } from '../actions/peopleAction
 //Assests
 import search from "../img/Search.svg";
 
+import {useLocation} from 'react-router-dom';
+
 const CardSearch = () => {
+
+  const location = useLocation();
+  console.log(location)
 
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState("");

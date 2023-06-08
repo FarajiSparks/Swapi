@@ -16,19 +16,22 @@ import starship from "../img/Starships.svg";
 import GenderImage from './GenderImage';
 import SelectDeck from './SelectDeck';
 
+import { useNavigate } from "react-router-dom";
 
 
 const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => { 
     const [toggler, setToggler] = useState(false)
-    const toggle = ()=>{
-      setToggler((prev)=>!prev);
-      console.log("working?")
+    const toggle = () => {
+      setToggler(prev => !prev);
     }
+
+    const navigate = useNavigate();
+   
 
     const dispatch = useDispatch();
     const loadDetailHandler = ()=>{
       dispatch(loadDetail(url ))
-      console.log(species);
+      navigate(`/${name}`);
     }
 
 

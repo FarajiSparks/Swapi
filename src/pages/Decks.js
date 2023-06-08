@@ -5,8 +5,12 @@ import { addDeck, loadDeck } from "../actions/deckAction";
 import Deck from "../components/Deck";
 import styled from 'styled-components';
 
+import {useLocation} from 'react-router-dom';
 
 const Decks = () => {
+  const location = useLocation();
+  console.log(location.pathname);
+
   const dispatch = useDispatch();
     useEffect(() => {
       dispatch(loadDeck());

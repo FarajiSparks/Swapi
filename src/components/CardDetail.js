@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 //Styling and Tenative Animation
 import styled from 'styled-components';
@@ -14,14 +14,10 @@ import vehicleImg from '../img/Vehicles.svg';
 import starshipImg from "../img/Starships.svg";
 import GenderImage from './GenderImage';
 
-const CardDetail = ({  dob, gender }) => {
+const CardDetail = () => {
 
   const {detail, homeworld, starship, species, vehicles} = useSelector(state=>state.detail)
-  useEffect(()=>{
-    console.log(vehicles);
-   
 
-  },[])
  
   return (
     <CardTile>
