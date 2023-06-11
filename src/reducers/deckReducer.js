@@ -33,6 +33,10 @@ const deckReducer = (state = initialState, action) => {
                 ...state, 
                 decks: state.decks
             }
+        // case 'ADD_CARD':
+        //     return {
+
+        //     }
         case 'SEARCH_DECK':
             return{
                 ...state,

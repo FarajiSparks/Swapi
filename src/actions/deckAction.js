@@ -22,4 +22,9 @@ export const loadDeck = (decks) => ({
 export const searchDeck = (name) =>({
     type: 'SEARCH_DECK',
     payload: name
-});    
+});
+
+// export const addCard = (cardId) =>({
+//     type: 'ADD_CARD',
+//     payload: cardId
+// });

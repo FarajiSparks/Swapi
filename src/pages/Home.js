@@ -15,9 +15,6 @@ import styled from 'styled-components';
 
 function Home() {
 
-  
- 
-
     // Fetching Data
     const dispatch = useDispatch();
     useEffect(() => {

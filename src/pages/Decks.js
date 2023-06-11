@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import  {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDeck, loadDeck } from "../actions/deckAction";
 import Deck from "../components/Deck";
@@ -15,7 +14,7 @@ const dispatch = useDispatch();
  const [name, setName] = useState('');
  const [faction, setFaction] = useState('jediOrder');
 
- const  {decks}  = useSelector((state) => state);
+ const {decks}  = useSelector((state) => state);
 
  const handleAddDeck = () => {
   if (!name || !faction) {
@@ -46,10 +45,10 @@ const dispatch = useDispatch();
   <button onClick={handleAddDeck}>Add Deck</button>
   <DeckList> 
     {decks.decks?.map(deck => {
-      return <Deck name={deck.name} faction={deck.faction} id={deck.id} />;
+      return <Deck name={deck.name} faction={deck.faction} key={deck.id} id={deck.id} />;
     })}
   </DeckList>
-  {(decks===[]) && <div>hello?</div>}
+
  </div>
  );
 };

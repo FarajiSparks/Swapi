@@ -10,15 +10,12 @@ import cards from "../img/Cards.svg";
 import decksSelected from "../img/Decks Selected.svg";
 
 //Routing
-import {useLocation} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
 const DeckHeader = () => {
 
     const navigate = useNavigate(); 
-    const location = useLocation();
-   
 
     //Home Navigation For Routing
     const homeHandler = () =>{

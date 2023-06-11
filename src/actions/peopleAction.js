@@ -47,8 +47,8 @@ export const loadAZ = () => async (dispatch) =>{
     const aName = a.name;
     const bName = b.name;
     if (bName >aName ) return -1;
-      if ( bName< aName) return 1;
-      return 0;
+    if ( bName< aName) return 1;
+    return 0;
   });
 
   dispatch({
@@ -100,7 +100,6 @@ export const loadYoungest = () => async (dispatch) => {
     if (aYear > bYear) return 1;
     return 0;
   });
-
   dispatch({
     type: 'FETCH_YOUNG',
     payload: {
@@ -112,7 +111,8 @@ export const loadYoungest = () => async (dispatch) => {
 };
 
 export const  fetchSearched = (person_name) => async(dispatch) =>{
-    const searchedPerson = await axios.get(searchedPersonURL()+person_name);
+    const searchedPerson = await axios.get(searchedPersonURL(person_name));
+    console.log(searchedPerson.data.results);
     dispatch({
         type: "FETCH_SEARCHED", 
         payload: {

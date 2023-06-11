@@ -22,23 +22,24 @@ const SelectDeck = () => {
             <Line/>
             {(decks === [] && <div>No decks created</div>)}
             <DeckList>{decks.map((deck)=>{
-                return(<ListItem id={deck.id}>{deck.name}</ListItem>)
+                return(<ListItem key={deck.id}>{deck.name}</ListItem>)
             })}</DeckList>
         </Container>
     </SelectContainer>
   )
 }
 
-const SelectContainer = styled(motion.div)`
+const SelectContainer = styled(motion.div)` 
+    position:absolute;
     width:216px;
     height:auto;
     background: #EDEDED;
     border: 1px solid #B8B8B8;
     box-shadow: 0px 19px 25px rgba(0, 0, 0, 0.14944), 0px 1.26352px 1.66253px rgba(0, 0, 0, 0.37);
     border-radius: 4px;
-    position:absolute;
     top:55px;
     right:20px;
+    z-index:1;
  
 `
 const Line = styled(motion.div)`
@@ -58,8 +59,8 @@ const Container = styled(motion.div)`
 const DeckList = styled(motion.div)`
     list-style-type:none;
     display:flex;
-flex-direction:column;
-align-items:center;
+    flex-direction:column;
+    align-items:center;
 `
 
 const ListItem = styled(motion.div)`

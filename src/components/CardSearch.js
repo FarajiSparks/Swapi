@@ -16,13 +16,13 @@ import {useLocation} from 'react-router-dom';
 
 const CardSearch = () => {
 
-  const location = useLocation();
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState("");
 
 
   //Search Function
-  const submitSearch = () =>{ 
+  const submitSearch = (e) =>{ 
+    e.preventDefault();
     dispatch (fetchSearched(textInput));
     setTextInput("");
   }
@@ -54,7 +54,7 @@ const CardSearch = () => {
   <Container>
       <Formy className="search">
             <input id="search-bar" value={textInput} placeholder="Search" onChange={inputHandler}  type="text"/>
-            <button onClick={(e)=>submitSearch(e)} type='button'><img className='search-icon' src={search} alt="" /></button>
+            <button onClick={submitSearch} type='button'><img className='search-icon' src={search} alt="" /></button>
       </Formy>
       <Filters>
         <button onClick={()=>filterAZ()}>A to Z</button>

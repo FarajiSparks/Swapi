@@ -101,7 +101,6 @@ const CardTile = styled(motion.article)`
   min-height:282px;
   width:auto;
   border-radius:8px;
-  overflow: hidden;
   background-color:white;
   font-family: 'Roboto' sans-serif;
   margin-bottom:25px;
@@ -109,8 +108,7 @@ const CardTile = styled(motion.article)`
  
   @media screen and (max-width: 767px){
     width:100%;
-  }
-       
+  }    
       `
 
 const CardBar = styled(motion.div)`

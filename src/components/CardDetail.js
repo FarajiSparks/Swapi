@@ -33,7 +33,7 @@ const CardDetail = () => {
             <GenderImage gender={detail.gender} />
             {(detail?.birth_year ? detail?.birth_year : <div>Unknown</div>)}
           </div>
-          {((species === []) ? <div>Human</div>: species?.name)}
+          {((species === '') ? <div>Human</div>: species?.name)}
         </div>
         <Line/>
         <CardStats>
@@ -82,9 +82,8 @@ const CardTile = styled(motion.article)`
   margin-bottom:25px;
   @media screen and (max-width: 767px){
     width:800px;
-  }
-       
-      `
+  }  
+`
 
 const CardBar = styled(motion.div)`
 height:98px;
@@ -107,7 +106,6 @@ const Line = styled(motion.div)`
   background-color:#B8B8B8;
   margin-bottom:13px;
   margin-top:8px;
-
 `
 
 const CardBarBottom = styled(motion.div)`
