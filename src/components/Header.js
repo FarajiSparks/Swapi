@@ -18,6 +18,12 @@ const Header = () => {
 
     const navigate = useNavigate();
 
+     //Home Navigation For Routing
+     const homeHandler = () =>{
+        navigate("/");
+    }
+   
+
     const decksHandler = () =>{
         navigate("/decks");
     }
@@ -25,7 +31,7 @@ const Header = () => {
     <>
     <Top>
         <div>
-            <img src={cardsSelected} alt="all cards" />
+            <button onClick={()=>homeHandler()}><img src={cardsSelected} alt="all cards" /></button>
             <button onClick={()=>decksHandler()}><img src={decks} alt="decks" /></button>
         </div>
         <div className="title"><span>SW</span>-API Deck Builder</div>

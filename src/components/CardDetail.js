@@ -73,15 +73,15 @@ const CardDetail = () => {
 
 const CardTile = styled(motion.article)`
  
-  min-height:282px;
-  width:800px;
+  min-height:482px;
+  width:334px;
   border-radius:8px;
   overflow: hidden;
   background-color:white;
   font-family: 'Roboto' sans-serif;
   margin-bottom:25px;
   @media screen and (max-width: 767px){
-    width:800px;
+    width:456px;
   }  
 `
 

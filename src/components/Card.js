@@ -36,7 +36,7 @@ const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => {
       dispatch(loadDetail(url ))
       navigate(`/${name}`);
     }
-
+    console.log(species);
 
   return (
     <CardTile>
@@ -51,10 +51,14 @@ const Card = ({name,species,url,dob,gender,homeworld,vehicles, starships}) => {
         </CardBarBottom>
       </CardBar>
       <CardContainer>
-          <GenderImage gender={gender} />
-          {(species === []) ? <div>Human</div> : species}
-          {(dob === "unknown") ? <div>Unknown</div> : dob}
-          <Line></Line>
+        <div className='titles'>
+          <div className='subtitles'>
+            <GenderImage gender={gender} />
+            {(dob === "unknown") ? <div>unknown</div> : dob}
+          </div>
+          {(species.length === 0) ? <div>Human</div> : species}
+        </div>
+        <Line></Line>
         <CardStats>
         <CardStatsTitle>
           <div className='title-left'> 
@@ -161,6 +165,17 @@ const CardContainer = styled(motion.div)`
 
  margin-left:20px;
  margin-right:20px;
+ .titles{
+  display:flex;
+  justify-content:space-between;
+  padding-top:8px;
+ }
+ .subtitles{
+  display:flex;
+
+  ;'lkhj 
+  
+ }
 `
 const CardStats = styled(motion.div)`
 display:flex;

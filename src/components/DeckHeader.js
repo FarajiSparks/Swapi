@@ -21,13 +21,16 @@ const DeckHeader = () => {
     const homeHandler = () =>{
         navigate("/");
     }
+    const decksHandler = () =>{
+        navigate("/decks");
+    }
    
   return (
     <>
     <Top>
         <div>
-            <button  onClick={()=>homeHandler()}><img src={cards} alt="" /></button>
-            <img src={decksSelected} alt="" />
+            <button  onClick={()=>homeHandler()}><img src={cards} alt="card unselected" /></button>
+            <button onClick={()=>decksHandler()}><img src={decksSelected} alt="deck selected" /></button>
         </div>
         <div className="title"><span>SW</span>-API Deck Builder</div>
         <img src={bavin} alt="" />

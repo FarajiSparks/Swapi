@@ -24,7 +24,10 @@ export const loadPerson = () => async (dispatch) => {
     fetchAll(planets()),
     fetchAll(vehicles()),
   ]);
-
+  // const  homeworldData = allPersonData.map(homeworld => homeworld.homeworld);
+  // console.log(homeworldData);
+  // const speciesData = allPersonData.map(specie=> specie.species);
+  // console.log(speciesData);
   dispatch({
     type: 'FETCH_INFO',
     payload: {

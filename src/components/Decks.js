@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDeck, loadDeck } from "../actions/deckAction";
-import Deck from "../components/Deck";
+import Deck from "./Deck";
 import styled from 'styled-components';
 
 

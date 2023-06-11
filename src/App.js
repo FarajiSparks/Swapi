@@ -1,16 +1,15 @@
 import React from "react";
-import Home from './pages/Home';
-import Header from "./components/Header";
-import DeckHeader from "./components/DeckHeader";
-import CardSearch from "./components/CardSearch";
-import DeckSearch from "./components/DeckSearch";
-import Decks from "./pages/Decks";
-import CardDetail from './components/CardDetail';
+import HomePage from "./pages/HomePage";
+import DeckPage from "./pages/DeckPage";
+import DetailPage from "./pages/DetailPage";
 
 //Router
 import {Route, Routes} from 'react-router-dom';
 
 import './App.css';
+
+
+
 
 
 function App() {
@@ -20,9 +19,9 @@ function App() {
   <>
     
     <Routes>
-      <Route path="/" element={[<Header/>,<CardSearch/>,<Home/>]}/>
-      <Route path="/decks" element={[<DeckHeader/>,<DeckSearch/>,<Decks/>]}/>
-      <Route path="/:id" element={[<Header/>, <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><CardDetail/></div>]}/>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/decks" element={<DeckPage/>}/>
+      <Route path="/:id" element={<DetailPage/>}/>
     </Routes>
    </>
   );
